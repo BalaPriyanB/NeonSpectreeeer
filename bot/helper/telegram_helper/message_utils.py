@@ -3,8 +3,8 @@ from html import escape
 from time import sleep, time
 from telegram import InputMediaPhoto
 from telegram.error import RetryAfter
-from pyrogram import enums
-from pyrogram.errors import FloodWait
+from hydrogram import enums
+from hydrogram.errors import FloodWait
 from os import remove
 from bot import botStartTime
 from bot.helper.ext_utils.bot_utils import get_readable_time
@@ -74,7 +74,7 @@ def sendRss(text, bot):
 
 
 async def sendRss_pyro(text: str):
-    rss_session = Client(name='rss_session', api_id=int(TELEGRAM_API), api_hash=TELEGRAM_HASH, session_string=USER_STRING_SESSION, parse_mode=enums.ParseMode.HTML)
+    rss_session = Client("rss_session", api_id=int(TELEGRAM_API), api_hash=TELEGRAM_HASH, session_string=USER_STRING_SESSION, parse_mode=enums.ParseMode.HTML)
     await rss_session.start()
     try:
         return await rss_session.send_message(config_dict['RSS_CHAT_ID'], text, disable_web_page_preview=True)
